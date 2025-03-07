@@ -1,0 +1,21 @@
+.nav
+	display: flex
+	align-items: center
+	gap: 40px
+	&-item
+		position: relative
+		cursor: pointer
+		color: #fff
+		font-weight: 300
+		font-size: 16px
+		text-decoration: none
+		&:first-child:before
+			content: ''
+			display: block
+			width: 50px
+			height: 50px
+			position: absolute
+			background: url('/assets/icons/coffee.svg') center center / cover no-repeat
+			bottom: 0px
+			left: -45px
+			
