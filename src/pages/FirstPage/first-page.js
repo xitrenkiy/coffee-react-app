@@ -1,12 +1,14 @@
 import NavBar from "../../components/navbar/navbar";
 import { Title, SecondTitle } from "../../components/title/title";
 import LogoBean from "../../components/divider/divider";
+import CardList from "../../components/card-list/card-list";
 
 import './first-page.sass';
 
-function FirstPage() {
+
+const FirstPage = ({ data }) => {
 	return (
-		<div>
+		<main>
 
 			<section className="greetings">
 				<header><NavBar /></header>
@@ -45,13 +47,14 @@ function FirstPage() {
 
 			<section className="our-best">
 				<SecondTitle name='Our Best'/>
+				<CardList data={data}/>
 			</section>
 
-			<footer class='footer'>
+			<footer className='footer'>
 				<NavBar color='black' align='center'/>
 				<LogoBean color='black' />
 			</footer>
-		</div>
+		</main>
 	)
 }
 

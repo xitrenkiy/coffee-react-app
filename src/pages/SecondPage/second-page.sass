@@ -1,0 +1,57 @@
+.our-coffee
+	min-height: 260px
+	padding: 50px 10.5% 40px 10.5%
+	background: url(/assets/images/secondbg.png) center center / cover no-repeat
+	object-fit: cover
+
+.about-beans
+	position: relative
+	padding: 70px 10.5% 60px 10.5%
+	display: flex
+	justify-content: center
+	align-items: center
+	gap: 80px
+	&-text
+		width: 346px
+		text-align: center
+		font-weight: 400
+		font-size: 16px
+	img
+		box-shadow: 5px 5px 30px rgba(0, 0, 0, .25)
+	&::before
+		content: ''
+		display: block
+		position: absolute
+		width: 240px
+		height: 2px
+		background-color: #000
+		bottom: 0
+
+.coffee
+	padding: 60px 10.5% 30px 10.5%
+	min-height: 763px
+	.filters
+		display: flex
+		align-items: center
+		justify-content: center
+		gap: 50px
+		.button-wrapper
+			display: flex
+			.btn-filter
+				width: 75px
+				height: 30px
+				margin-right: 5px
+				box-shadow: 0 4px 4px rgba(0, 0, 0, .25)
+				background-color: #fff
+				border: none
+				cursor: pointer
+				transition: .5s all
+			.active
+				transform: scale(1.1)
+			.btn-filter:first-child
+				border-top-left-radius: 6px
+				border-bottom-left-radius: 6px
+			.btn-filter:last-child
+				border-top-right-radius: 6px
+				border-bottom-right-radius: 6px
+				
