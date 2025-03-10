@@ -35,23 +35,54 @@
 		align-items: center
 		justify-content: center
 		gap: 50px
-		.button-wrapper
-			display: flex
-			.btn-filter
-				width: 75px
-				height: 30px
-				margin-right: 5px
-				box-shadow: 0 4px 4px rgba(0, 0, 0, .25)
-				background-color: #fff
-				border: none
-				cursor: pointer
-				transition: .5s all
-			.active
-				transform: scale(1.1)
-			.btn-filter:first-child
-				border-top-left-radius: 6px
-				border-bottom-left-radius: 6px
-			.btn-filter:last-child
-				border-top-right-radius: 6px
-				border-bottom-right-radius: 6px
-				
+
+.card-info
+	background: url(/assets/images/secondbg.png) center center / cover no-repeat
+	object-fit: cover
+	padding: 40px 10.50% 30px 10.50%
+	height: 300px
+	position: relative
+	img
+		height: 300px
+		width: 300px
+		object-fit: cover
+	p
+		text-align: left
+	.bold
+		font-weight: 700
+	.big
+		font-size: 24px
+
+.close-modal 
+	position: absolute
+	top: 30px
+	right: 30px
+	width: 40px
+	height: 40px
+	background-color: rgba(0, 0, 0, 0.5)
+	border: none
+	border-radius: 50%
+	font-size: 18px
+	color: #333
+	cursor: pointer
+	transition: background-color 0.3s, transform 0.2s
+
+
+.close-modal:hover 
+	background-color: rgba(0, 0, 0, 0.2)
+	transform: scale(1.1)
+
+
+.ReactModal__Body--open, .ReactModal__Html--open
+	overflow: hidden
+
+.ReactModal__Overlay 
+	opacity: 0
+	transition: opacity 1000ms ease-in-out
+
+.ReactModal__Overlay--after-open
+	opacity: 1;
+
+.ReactModal__Overlay--before-close
+	opacity: 0;
+

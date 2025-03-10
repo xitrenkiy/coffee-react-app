@@ -1,9 +1,16 @@
 import { Component } from 'react';
+import ReactModal from 'react-modal';
 
 import FirstPage from '../../pages/FirstPage/first-page';
 import SecondPage from '../../pages/SecondPage/second-page';
+import ThirdPage from '../../pages/ThirdPage/third-page';
 
 import './app.sass';
+import { Title, SecondTitle } from '../title/title';
+import NavBar from '../navbar/navbar';
+import LogoBean from '../divider/divider';
+
+ReactModal.setAppElement('#root');
 
 class App extends Component {
 	constructor(props) {
@@ -23,11 +30,20 @@ class App extends Component {
 				{src: require('../../assets/images/mainphoto.png'), alt: 'Aromisto', name: 'Java Delight Medium Roast 1 kg', price: 6.99, id: 6, country: 'Brazil'},
 				{src: require('../../assets/images/mainphoto.png'), alt: 'Aromisto', name: 'Columbia Supremo Beans 1 kg', price: 6.99, id: 7, country: 'Kenya'},
 				{src: require('../../assets/images/mainphoto.png'), alt: 'Aromisto', name: 'Kenya Sunrise Light Roast 1 kg', price: 6.99, id: 8, country: 'Columbia'},
-				{src: require('../../assets/images/mainphoto.png'), alt: 'Aromisto', name: 'Brazilian Santos Blend 2 kg', price: 6.99, id: 9, country: 'Brazil'},
 			],
-			filter: 'all',
-			text: ''
+			filter: '',
+			text: '',
+			curId: '',
+			shomModal: false
 		}
+	}
+
+	handleOpenModal = () => {
+		this.setState({ showModal: true });
+	}
+
+	handleCloseModal = () => {
+		this.setState({ showModal: false });
 	}
 
 	onFilterClick = (items, filter) => {
@@ -61,14 +77,58 @@ class App extends Component {
 		this.setState({text});
 	}
 
+	onBoxClick = (data, curId) => {
+		return data.find(item => item.id === curId) || {};
+	}
+
+	onIdClick = (curId) => {
+		this.setState({curId, showModal: true})
+	}
+
 	render() {
-		const { bestData, content, filter, text } = this.state;
+		const { bestData, content, filter, text, curId, showModal } = this.state;
 		const visibleData = this.onChangeInput(this.onFilterClick(content, filter), text);
+		const { country, price, src} = this.onBoxClick(content, curId);
+		// const items = jobItem.map(({ country, price, src }) => ({ country, price, src }));
+		// console.log(items.map(item => item));
 
 		return (
 			<div className="app">
 				{/* <FirstPage data={bestData}/> */}
-				<SecondPage data={visibleData} onFilter={this.onFilter} onSearch={this.onSearch} filter={filter}/>
+				{/* <SecondPage data={visibleData} onFilter={this.onFilter} onSearch={this.onSearch} filter={filter} onIdClick={this.onIdClick}/> */}
+				<ThirdPage data={visibleData} onIdClick={this.onIdClick}/>
+				
+				<ReactModal 
+				isOpen={showModal}
+				closeTimeoutMS={1000}
+				contentLabel="Minimal Modal Example"
+				onRequestClose={this.handleCloseModal}
+				>
+				<div className="card-info">
+					<NavBar />
+					<Title name='Our Coffee' />
+					<section className="about-beans">
+						<img src={src} alt={`Coffee from ${country}`} />
+						<div className="about-beans-text">
+							<SecondTitle name='About It' />
+							<LogoBean color='black' />
+							<p><span className='bold'>Country:</span> {country}</p>
+							<p> <span className='bold'>Description: </span>
+								Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos vitae ut aliquid ducimus quo quibusdam vero odit accusantium rerum saepe! Inventore beatae expedita iusto recusandae velit saepe corporis voluptas temporibus!
+							</p>
+							<p>Price: <span className='bold big'>{price}$</span></p>
+						</div>
+					</section>
+			
+					<footer className='footer'>
+						<NavBar color='black' align='center'/>
+						<LogoBean color='black' />
+					</footer>
+				</div>
+				
+				<button onClick={this.handleCloseModal} className='close-modal'>✖️</button>
+				</ReactModal>
+
 			</div>
 		  )
 	}

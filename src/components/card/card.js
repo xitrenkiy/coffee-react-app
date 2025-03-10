@@ -1,6 +1,6 @@
 import './card.sass';
 
-function CardItem({ src, alt, name, price, country, content }) {
+const CardItem = ({ src, alt, name, price, country, onBoxClick, handleOpenModal }) => {
 
 	let classNames = 'box';
 	if(country) {
@@ -8,7 +8,7 @@ function CardItem({ src, alt, name, price, country, content }) {
 	}
 
 	return (
-		<div className={classNames}>
+		<div className={classNames} onClick={onBoxClick}>
 			<img src={src} alt={alt} loading='lazy'/>
 			<div className="name">{name}</div>
 			<div className="country">{country}</div>

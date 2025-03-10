@@ -2,6 +2,7 @@ import NavBar from "../../components/navbar/navbar";
 import { Title, SecondTitle } from "../../components/title/title";
 import LogoBean from "../../components/divider/divider";
 import CardList from "../../components/card-list/card-list";
+import Footer from "../../components/footer/footer";
 
 import './first-page.sass';
 
@@ -50,10 +51,7 @@ const FirstPage = ({ data }) => {
 				<CardList data={data}/>
 			</section>
 
-			<footer className='footer'>
-				<NavBar color='black' align='center'/>
-				<LogoBean color='black' />
-			</footer>
+			<Footer />
 		</main>
 	)
 }
