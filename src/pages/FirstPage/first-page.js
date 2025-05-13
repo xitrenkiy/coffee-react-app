@@ -7,7 +7,7 @@ import Footer from "../../components/footer/footer";
 import './first-page.sass';
 
 
-const FirstPage = ({ data }) => {
+const FirstPage = ({ data, onIdClick }) => {
 	return (
 		<main>
 
@@ -47,8 +47,8 @@ const FirstPage = ({ data }) => {
 			</section>
 
 			<section className="our-best">
-				<SecondTitle name='Our Best'/>
-				<CardList data={data}/>
+				<SecondTitle name='Our Best' />
+				<CardList data={data} onIdClick={onIdClick} />
 			</section>
 
 			<Footer />

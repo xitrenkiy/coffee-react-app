@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import ReactModal from 'react-modal';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import FirstPage from '../../pages/FirstPage/first-page';
 import SecondPage from '../../pages/SecondPage/second-page';
@@ -89,14 +90,15 @@ class App extends Component {
 		const { bestData, content, filter, text, curId, showModal } = this.state;
 		const visibleData = this.onChangeInput(this.onFilterClick(content, filter), text);
 		const { country, price, src} = this.onBoxClick(content, curId);
-		// const items = jobItem.map(({ country, price, src }) => ({ country, price, src }));
-		// console.log(items.map(item => item));
 
 		return (
 			<div className="app">
-				{/* <FirstPage data={bestData}/> */}
-				{/* <SecondPage data={visibleData} onFilter={this.onFilter} onSearch={this.onSearch} filter={filter} onIdClick={this.onIdClick}/> */}
-				<ThirdPage data={visibleData} onIdClick={this.onIdClick}/>
+			<Router>
+				<Routes>
+					<Route path='/' element={<FirstPage data={bestData} onIdClick={this.onIdClick}/>} />
+					<Route path='/coffee' element={<SecondPage data={visibleData} onFilter={this.onFilter} onSearch={this.onSearch} filter={filter} onIdClick={this.onIdClick}/>} />
+					<Route path='/about' element={<ThirdPage data={visibleData} onIdClick={this.onIdClick}/>} />
+				</Routes>
 				
 				<ReactModal 
 				isOpen={showModal}
@@ -128,7 +130,7 @@ class App extends Component {
 				
 				<button onClick={this.handleCloseModal} className='close-modal'>✖️</button>
 				</ReactModal>
-
+			</Router>
 			</div>
 		  )
 	}

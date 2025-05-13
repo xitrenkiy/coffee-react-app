@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 import './navbar.sass';
 
 function NavBar({ color, align}) {
@@ -6,9 +8,9 @@ function NavBar({ color, align}) {
 
 	return (
 		<nav className='nav' style={{justifyContent: aligned}}>
-			<a className="nav-item" href='true' style={{color: colored}}>Coffee house</a>
-			<a className="nav-item" href='true' style={{color: colored}}>Our coffee</a>
-			<a className="nav-item" href='true' style={{color: colored}}>For your pleasure</a>
+			<NavLink to='/' className={({ isActive }) => isActive ? "nav-item active" : "nav-item" } style={{color: colored}}>Coffee house</NavLink>
+			<NavLink to='/coffee' className={({ isActive }) => isActive ? "nav-item active" : "nav-item" } style={{color: colored}}>Our coffee</NavLink>
+			<NavLink to='/about' className={({ isActive }) => isActive ? "nav-item active" : "nav-item" } style={{color: colored}}>For your pleasure</NavLink>
 		</nav>
 	)
 }
